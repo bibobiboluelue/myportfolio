@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Noto+Sans+SC:wght@400;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
+  --color-swiss-purple: #9061F9;
+  --color-swiss-green: #A3E635;
+  --color-swiss-yellow: #FBBF24;
+  --color-swiss-black: #1A1A1A;
+  --color-swiss-white: #FFFFFF;
+}
+
+@layer base {
+  body {
+    @apply bg-swiss-white text-swiss-black antialiased overflow-x-hidden font-sans;
+  }
+}
+
+.swiss-border {
+  @apply border-b-2 border-swiss-black;
+}
+
+.swiss-grid-item {
+  @apply border-b-2 border-swiss-black py-4 px-6 hover:bg-swiss-purple hover:text-swiss-white transition-colors duration-200;
+}
+
+.marquee-text {
+  @apply whitespace-nowrap font-black uppercase tracking-tighter;
+}
+
