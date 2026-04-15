@@ -59,25 +59,13 @@ export default function Header() {
         animate={{ height: 'auto' }}
         className="bg-swiss-purple text-swiss-green p-12 md:p-24 flex flex-col items-center justify-center text-center overflow-hidden border-b-4 border-swiss-black relative"
       >
-        {/* Floating Icons */}
-        <div className="absolute top-10 left-10 hidden lg:block">
-          <InteractiveIcon color="bg-swiss-green">
-            <Smile size={48} className="text-swiss-black" strokeWidth={3} />
-          </InteractiveIcon>
-        </div>
-        <div className="absolute bottom-10 right-10 hidden lg:block">
-          <InteractiveIcon color="bg-swiss-yellow">
-            <Monitor size={48} className="text-swiss-black" strokeWidth={3} />
-          </InteractiveIcon>
-        </div>
-
         <motion.h1
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
           className="text-6xl md:text-[12vw] font-black leading-[0.8] tracking-tighter uppercase relative z-10"
         >
-          YOUR NAME<br />PORTFOLIO
+          JINQIAOQIAO<br />PORTFOLIO
         </motion.h1>
         
         {/* 3D Animated Folder Icon */}
@@ -109,7 +97,7 @@ export default function Header() {
           <div>
             <h2 className="text-sm font-black uppercase tracking-widest mb-4 text-swiss-purple">Contact / 联系方式</h2>
             <p className="text-2xl md:text-3xl font-bold break-all hover:text-swiss-purple transition-colors cursor-pointer relative z-10">
-              hello@example.com
+              eventualli@163.com
             </p>
           </div>
           <div className="flex gap-6 mt-8 relative z-10">
