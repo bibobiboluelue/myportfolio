@@ -69,12 +69,22 @@ export default function Header() {
         </motion.h1>
         
         {/* 3D Animated Folder Icon */}
-        <div className="mt-8 relative z-10">
-          <InteractiveIcon color="bg-swiss-yellow">
-            <Folder size={64} className="text-swiss-black" strokeWidth={3} />
-            <div className="absolute -top-4 left-0 w-12 h-4 bg-swiss-yellow border-t-4 border-x-4 border-swiss-black rounded-t-lg" />
-          </InteractiveIcon>
-        </div>
+        <motion.div
+          className="mt-8 relative z-10"
+          animate={{ y: [0, -12, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <motion.div
+            whileHover={{ scale: 1.15, rotate: -8 }}
+            whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <InteractiveIcon color="bg-swiss-yellow">
+              <Folder size={64} className="text-swiss-black" strokeWidth={3} />
+              <div className="absolute -top-4 left-0 w-12 h-4 bg-swiss-yellow border-t-4 border-x-4 border-swiss-black rounded-t-lg" />
+            </InteractiveIcon>
+          </motion.div>
+        </motion.div>
       </motion.div>
 
       {/* Bio Section - White with Black Borders */}
