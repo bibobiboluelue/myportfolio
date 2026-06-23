@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, PlayCircle } from 'lucide-react';
 import { projects } from '../data/projects';
 
 export default function ProjectDetail() {
@@ -85,19 +85,49 @@ export default function ProjectDetail() {
         </motion.div>
       </motion.div>
 
-      {/* Overview */}
       <div className="grid grid-cols-1 md:grid-cols-3 border-b-4 border-swiss-black">
         <div className="md:col-span-2 p-12 md:p-16 border-b-4 md:border-b-0 md:border-r-4 border-swiss-black">
           <h2 className={`text-xs font-black uppercase tracking-widest mb-6 ${accentText}`}>项目概述</h2>
           <p className="text-2xl md:text-3xl font-bold leading-relaxed">
             {project.description}
           </p>
-          {/* 在这里添加更多描述文字 */}
-          <p className="mt-6 text-lg font-medium text-swiss-black/60 leading-relaxed">
-            在这里补充项目的详细背景、目标与挑战。你可以描述项目的起源、解决的核心问题，以及整体设计思路。
-          </p>
+          <div className="mt-8 flex flex-col gap-4">
+            {(project.overview || ['在这里补充项目的详细背景、目标与挑战。你可以描述项目的起源、解决的核心问题，以及整体设计思路。']).map((paragraph) => (
+              <p key={paragraph} className="text-lg font-medium text-swiss-black/65 leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          {project.externalLinks && (
+            <div className="mt-10 flex flex-wrap gap-4">
+              {project.externalLinks.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 bg-swiss-yellow border-4 border-swiss-black px-4 py-3 text-sm font-black uppercase tracking-widest poster-shadow hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
+                >
+                  <PlayCircle size={18} strokeWidth={3} />
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
         <div className="p-12 md:p-16 flex flex-col gap-8">
+          {project.award && (
+            <div>
+              <h2 className={`text-xs font-black uppercase tracking-widest mb-3 ${accentText}`}>奖项</h2>
+              <p className="text-xl font-bold">{project.award}</p>
+            </div>
+          )}
+          {project.role && (
+            <div>
+              <h2 className={`text-xs font-black uppercase tracking-widest mb-3 ${accentText}`}>担任</h2>
+              <p className="text-xl font-bold">{project.role}</p>
+            </div>
+          )}
           <div>
             <h2 className={`text-xs font-black uppercase tracking-widest mb-3 ${accentText}`}>类型</h2>
             <p className="text-xl font-bold">{project.category}</p>
@@ -112,7 +142,7 @@ export default function ProjectDetail() {
           </div>
           <div>
             <h2 className={`text-xs font-black uppercase tracking-widest mb-3 ${accentText}`}>年份</h2>
-            <p className="text-xl font-bold">2024</p>
+            <p className="text-xl font-bold">{project.period || '2024'}</p>
           </div>
         </div>
       </div>
@@ -120,7 +150,6 @@ export default function ProjectDetail() {
       {/* Main Image */}
       <div className="border-b-4 border-swiss-black">
         <div className="w-full aspect-video bg-swiss-black/5 flex items-center justify-center overflow-hidden">
-          {/* 替换为你的主图 */}
           <img
             src={project.imageUrl}
             alt={project.title}
@@ -133,52 +162,63 @@ export default function ProjectDetail() {
       <div className="p-12 md:p-16 border-b-4 border-swiss-black">
         <h2 className={`text-xs font-black uppercase tracking-widest mb-12 ${accentText}`}>设计过程</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {['研究 / Research', '设计 / Design', '迭代 / Iterate'].map((step, i) => (
-            <div key={step} className="border-4 border-swiss-black p-8 poster-shadow bg-swiss-white relative overflow-hidden">
+          {(project.process || [
+            { title: '研究 / Research', body: '在这里描述这个阶段的具体工作内容、方法与产出。' },
+            { title: '设计 / Design', body: '在这里描述这个阶段的具体工作内容、方法与产出。' },
+            { title: '迭代 / Iterate', body: '在这里描述这个阶段的具体工作内容、方法与产出。' },
+          ]).map((step, i) => (
+            <div key={step.title} className="border-4 border-swiss-black p-8 poster-shadow bg-swiss-white relative overflow-hidden">
               <div className="absolute right-4 top-4 w-12 h-10 poly-bg border-4 border-swiss-black opacity-20" />
               <p className={`text-5xl font-black mb-4 ${accentText}`}>0{i + 1}</p>
-              <h3 className="text-lg font-black uppercase tracking-tight mb-3">{step}</h3>
+              <h3 className="text-lg font-black uppercase tracking-tight mb-3">{step.title}</h3>
               <p className="text-sm font-medium text-swiss-black/60 leading-relaxed">
-                在这里描述这个阶段的具体工作内容、方法与产出。
+                {step.body}
               </p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Image / Video Grid */}
       <div className="p-12 md:p-16 border-b-4 border-swiss-black">
-        <h2 className={`text-xs font-black uppercase tracking-widest mb-12 ${accentText}`}>项目展示</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* 图片占位 1 */}
-          <div className="aspect-video poly-bg border-4 border-swiss-black flex items-center justify-center">
-            <p className="text-sm font-black uppercase tracking-widest text-swiss-black/30">图片 / 视频 01</p>
-          </div>
-          {/* 图片占位 2 */}
-          <div className="aspect-video poly-bg border-4 border-swiss-black flex items-center justify-center">
-            <p className="text-sm font-black uppercase tracking-widest text-swiss-black/30">图片 / 视频 02</p>
-          </div>
-          {/* 宽图占位 */}
-          <div className="md:col-span-2 aspect-video poly-bg border-4 border-swiss-black flex items-center justify-center">
-            <p className="text-sm font-black uppercase tracking-widest text-swiss-black/30">图片 / 视频 03（宽幅）</p>
-          </div>
+        <h2 className={`text-xs font-black uppercase tracking-widest mb-12 ${accentText}`}>项目展示 / PDF 转图</h2>
+        <div className="grid grid-cols-1 gap-8">
+          {(project.gallery || []).length > 0 ? (
+            project.gallery?.map((image, index) => (
+              <figure key={image} className="bg-swiss-white border-4 border-swiss-black poster-shadow overflow-hidden">
+                <img
+                  src={image}
+                  alt={`${project.title} 项目介绍第 ${index + 1} 页`}
+                  loading={index > 1 ? 'lazy' : 'eager'}
+                  className="w-full h-auto"
+                />
+                <figcaption className="border-t-4 border-swiss-black px-4 py-3 text-xs font-black uppercase tracking-widest text-swiss-black/60">
+                  Page {String(index + 1).padStart(2, '0')}
+                </figcaption>
+              </figure>
+            ))
+          ) : (
+            <div className="aspect-video poly-bg border-4 border-swiss-black flex items-center justify-center">
+              <p className="text-sm font-black uppercase tracking-widest text-swiss-black/30">图片 / 视频 01</p>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Footer Nav */}
       <div className="p-12 md:p-16 flex items-center justify-between">
         <Link
           to="/"
-          className={`flex items-center gap-3 font-black text-lg uppercase tracking-tight hover:${accentText} transition-colors`}
+          className="flex items-center gap-3 font-black text-lg uppercase tracking-tight hover:text-swiss-purple transition-colors"
         >
           <ArrowLeft size={24} strokeWidth={3} />
           所有作品
         </Link>
         <a
-          href="#"
-          className={`flex items-center gap-3 font-black text-lg uppercase tracking-tight hover:${accentText} transition-colors`}
+          href={project.externalLinks?.[0]?.url || '#'}
+          target={project.externalLinks?.[0] ? '_blank' : undefined}
+          rel={project.externalLinks?.[0] ? 'noreferrer' : undefined}
+          className="flex items-center gap-3 font-black text-lg uppercase tracking-tight hover:text-swiss-purple transition-colors"
         >
-          查看原型
+          查看视频
           <ExternalLink size={24} strokeWidth={3} />
         </a>
       </div>
