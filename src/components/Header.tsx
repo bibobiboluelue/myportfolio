@@ -59,7 +59,7 @@ export default function Header() {
         className="min-h-[92vh] p-6 md:p-12 flex items-end overflow-hidden border-b-4 border-swiss-black relative bg-swiss-black"
       >
         <img
-          src="/assets/portfolio-hero-lowpoly.png"
+          src={`${import.meta.env.BASE_URL}assets/portfolio-hero-lowpoly.png`}
           alt=""
           className="absolute inset-0 w-full h-full object-cover saturate-125 contrast-110"
         />
