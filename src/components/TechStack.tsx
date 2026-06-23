@@ -9,13 +9,12 @@ const skills = [
 ];
 
 export default function TechStack() {
-  const accentColors = ['bg-swiss-purple', 'bg-swiss-green', 'bg-swiss-yellow', 'bg-swiss-purple'];
+  const accentColors = ['bg-swiss-purple', 'bg-swiss-green', 'bg-swiss-yellow', 'bg-poly-cyan'];
 
   return (
-    <section id="skills" className="w-full">
-      {/* Section Title */}
-      <div className="p-6 md:px-12 border-b-4 border-swiss-black bg-swiss-white">
-        <h2 className="text-xl font-black uppercase tracking-tighter">Tech Stack / 技术栈</h2>
+    <section id="skills" className="w-full bg-swiss-white">
+      <div className="p-6 md:px-12 border-b-4 border-swiss-black bg-poly-cyan">
+        <h2 className="text-xl font-black uppercase tracking-tighter [text-shadow:2px_2px_0_#fff05a]">Toolkit / 能力工具箱</h2>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
@@ -26,8 +25,9 @@ export default function TechStack() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1 }}
-            className="p-8 md:p-12 border-b-4 lg:border-b-0 lg:border-r-4 last:border-r-0 border-swiss-black"
+            className="p-8 md:p-12 border-b-4 lg:border-b-0 lg:border-r-4 last:border-r-0 border-swiss-black relative overflow-hidden"
           >
+            <div className={cn("absolute right-4 top-4 w-16 h-12 poly-clip border-4 border-swiss-black opacity-20", accentColors[idx % accentColors.length])} />
             <h3 className="text-sm font-black uppercase tracking-[0.2em] mb-8 text-swiss-purple">
               {group.category}
             </h3>
@@ -39,7 +39,7 @@ export default function TechStack() {
                 >
                   <span>{item}</span>
                   <div className={cn(
-                    "w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity",
+                    "w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity border-2 border-swiss-black poly-clip",
                     accentColors[idx % accentColors.length]
                   )} />
                 </div>

@@ -1,30 +1,66 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Noto+Sans+SC:wght@400;700;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Space Grotesk", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
-  --color-swiss-purple: #9061F9;
-  --color-swiss-green: #A3E635;
-  --color-swiss-yellow: #FBBF24;
-  --color-swiss-black: #1A1A1A;
+  --font-sans: "PingFang SC", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+  --color-swiss-purple: #FF3FB4;
+  --color-swiss-green: #22E6A7;
+  --color-swiss-yellow: #FFF05A;
+  --color-swiss-black: #111827;
   --color-swiss-white: #FFFFFF;
+  --color-poly-cyan: #00C7F2;
+  --color-poly-orange: #FF7A2F;
+  --color-poly-blue: #256BFF;
+  --color-poly-cream: #FFF7D7;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-swiss-white text-swiss-black antialiased overflow-x-hidden font-sans;
+    @apply bg-poly-cream text-swiss-black antialiased overflow-x-hidden font-sans;
+    background-image:
+      linear-gradient(135deg, rgba(0, 199, 242, 0.2) 0 18%, transparent 18% 100%),
+      linear-gradient(45deg, transparent 0 66%, rgba(255, 63, 180, 0.2) 66% 82%, transparent 82%),
+      radial-gradient(circle at 86% 8%, rgba(255, 240, 90, 0.48), transparent 18%);
+  }
+
+  ::selection {
+    background: #ff3fb4;
+    color: #111827;
   }
 }
 
 .swiss-border {
-  @apply border-b-2 border-swiss-black;
+  @apply border-b-4 border-swiss-black;
 }
 
 .swiss-grid-item {
-  @apply border-b-2 border-swiss-black py-4 px-6 hover:bg-swiss-purple hover:text-swiss-white transition-colors duration-200;
+  @apply border-b-4 border-swiss-black py-4 px-6 hover:bg-swiss-purple hover:text-swiss-white transition-colors duration-200;
 }
 
 .marquee-text {
   @apply whitespace-nowrap font-black uppercase tracking-tighter;
 }
 
+.poster-shadow {
+  box-shadow: 8px 8px 0 rgba(17, 24, 39, 0.95);
+}
+
+.sticker-shadow {
+  filter: drop-shadow(6px 7px 0 rgba(17, 24, 39, 0.3));
+}
+
+.poly-clip {
+  clip-path: polygon(0 13%, 82% 0, 100% 64%, 76% 100%, 10% 88%);
+}
+
+.poly-bg {
+  background-image:
+    linear-gradient(142deg, transparent 0 16%, rgba(255, 255, 255, 0.32) 16% 18%, transparent 18% 100%),
+    linear-gradient(28deg, rgba(255, 240, 90, 0.95) 0 22%, transparent 22%),
+    linear-gradient(150deg, transparent 0 58%, rgba(255, 63, 180, 0.82) 58% 76%, transparent 76%),
+    linear-gradient(55deg, transparent 0 36%, rgba(0, 199, 242, 0.86) 36% 56%, transparent 56%),
+    linear-gradient(118deg, rgba(255, 122, 47, 0.8) 0 28%, rgba(34, 230, 167, 0.65) 28% 52%, rgba(123, 85, 255, 0.78) 52% 100%);
+}

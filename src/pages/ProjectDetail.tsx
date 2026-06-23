@@ -19,47 +19,47 @@ export default function ProjectDetail() {
   }
 
   const accentBg = {
-    UIUX: 'bg-swiss-purple',
+    UIUX: 'bg-poly-cyan',
     Game: 'bg-swiss-green',
-    Other: 'bg-swiss-yellow',
+    Other: 'bg-swiss-purple',
   }[project.category];
 
   const accentText = {
-    UIUX: 'text-swiss-purple',
+    UIUX: 'text-poly-cyan',
     Game: 'text-swiss-green',
-    Other: 'text-swiss-yellow',
+    Other: 'text-swiss-purple',
   }[project.category];
 
   const headerText = {
-    UIUX: 'text-swiss-white',
+    UIUX: 'text-swiss-black',
     Game: 'text-swiss-black',
-    Other: 'text-swiss-black',
+    Other: 'text-swiss-white',
   }[project.category];
 
   return (
-    <div className="min-h-screen">
-      {/* Back Button */}
+    <div className="min-h-screen bg-poly-cream">
       <div className="fixed top-6 left-6 z-50">
         <Link
           to="/"
-          className="flex items-center gap-2 bg-swiss-white border-4 border-swiss-black px-4 py-2 font-black text-sm uppercase tracking-widest shadow-[4px_4px_0px_0px_rgba(26,26,26,1)] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
+          className="flex items-center gap-2 bg-swiss-yellow border-4 border-swiss-black px-4 py-2 font-black text-sm uppercase tracking-widest poster-shadow hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all"
         >
           <ArrowLeft size={16} strokeWidth={3} />
           返回
         </Link>
       </div>
 
-      {/* Hero */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className={`${accentBg} ${headerText} min-h-[60vh] flex flex-col justify-end p-12 md:p-24 border-b-4 border-swiss-black`}
+        className={`${accentBg} ${headerText} min-h-[60vh] flex flex-col justify-end p-12 md:p-24 border-b-4 border-swiss-black relative overflow-hidden`}
       >
+        <div className="absolute right-12 top-16 w-40 h-28 bg-swiss-yellow border-4 border-swiss-black poly-clip sticker-shadow opacity-80" />
+        <div className="absolute left-1/2 top-24 w-24 h-24 bg-poly-orange border-4 border-swiss-black sticker-shadow opacity-70 [clip-path:polygon(50%_0,63%_32%,100%_36%,70%_58%,82%_100%,50%_76%,18%_100%,30%_58%,0_36%,37%_32%)]" />
         <motion.p
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1 }}
-          className="text-sm font-black uppercase tracking-widest mb-4 opacity-60"
+          className="relative z-10 text-sm font-black uppercase tracking-widest mb-4 opacity-70"
         >
           {project.category} / 项目详情
         </motion.p>
@@ -67,7 +67,7 @@ export default function ProjectDetail() {
           initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-5xl md:text-[8vw] font-black leading-[0.9] tracking-tighter uppercase"
+          className="relative z-10 text-5xl md:text-[8vw] font-black leading-[0.9] tracking-tighter uppercase [text-shadow:4px_4px_0_rgba(255,255,255,0.45)]"
         >
           {project.title}
         </motion.h1>
@@ -75,10 +75,10 @@ export default function ProjectDetail() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="flex flex-wrap gap-3 mt-8"
+          className="relative z-10 flex flex-wrap gap-3 mt-8"
         >
           {project.tags.map(tag => (
-            <span key={tag} className="text-xs font-black uppercase tracking-widest border-2 border-current px-3 py-1 rounded-full">
+            <span key={tag} className="text-xs font-black uppercase tracking-widest border-4 border-current bg-swiss-white/80 text-swiss-black px-3 py-1">
               {tag}
             </span>
           ))}
@@ -134,7 +134,8 @@ export default function ProjectDetail() {
         <h2 className={`text-xs font-black uppercase tracking-widest mb-12 ${accentText}`}>设计过程</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {['研究 / Research', '设计 / Design', '迭代 / Iterate'].map((step, i) => (
-            <div key={step} className="border-4 border-swiss-black p-8 shadow-[8px_8px_0px_0px_rgba(26,26,26,1)]">
+            <div key={step} className="border-4 border-swiss-black p-8 poster-shadow bg-swiss-white relative overflow-hidden">
+              <div className="absolute right-4 top-4 w-12 h-10 poly-bg border-4 border-swiss-black opacity-20" />
               <p className={`text-5xl font-black mb-4 ${accentText}`}>0{i + 1}</p>
               <h3 className="text-lg font-black uppercase tracking-tight mb-3">{step}</h3>
               <p className="text-sm font-medium text-swiss-black/60 leading-relaxed">
@@ -150,15 +151,15 @@ export default function ProjectDetail() {
         <h2 className={`text-xs font-black uppercase tracking-widest mb-12 ${accentText}`}>项目展示</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* 图片占位 1 */}
-          <div className="aspect-video bg-swiss-black/5 border-4 border-swiss-black flex items-center justify-center">
+          <div className="aspect-video poly-bg border-4 border-swiss-black flex items-center justify-center">
             <p className="text-sm font-black uppercase tracking-widest text-swiss-black/30">图片 / 视频 01</p>
           </div>
           {/* 图片占位 2 */}
-          <div className="aspect-video bg-swiss-black/5 border-4 border-swiss-black flex items-center justify-center">
+          <div className="aspect-video poly-bg border-4 border-swiss-black flex items-center justify-center">
             <p className="text-sm font-black uppercase tracking-widest text-swiss-black/30">图片 / 视频 02</p>
           </div>
           {/* 宽图占位 */}
-          <div className="md:col-span-2 aspect-video bg-swiss-black/5 border-4 border-swiss-black flex items-center justify-center">
+          <div className="md:col-span-2 aspect-video poly-bg border-4 border-swiss-black flex items-center justify-center">
             <p className="text-sm font-black uppercase tracking-widest text-swiss-black/30">图片 / 视频 03（宽幅）</p>
           </div>
         </div>

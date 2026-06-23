@@ -1,6 +1,4 @@
 import { motion } from 'motion/react';
-import { cn } from '../lib/utils';
-
 const navItems = [
   { name: '作品', href: '#projects' },
   { name: '关于', href: '#about' },
@@ -15,14 +13,14 @@ export default function Navbar() {
       animate={{ y: 0 }}
       className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 pointer-events-none"
     >
-      <div className="glass px-5 py-2 rounded-2xl flex items-center gap-6 shadow-sm pointer-events-auto">
-        <a href="#" className="font-black text-sm tracking-tighter">PORTFOLIO.</a>
+      <div className="px-5 py-2 flex items-center gap-6 pointer-events-auto bg-swiss-white/92 border-4 border-swiss-black poster-shadow backdrop-blur-md">
+        <a href="#" className="font-black text-sm tracking-tighter text-swiss-black [text-shadow:2px_2px_0_#ff3fb4]">PORTFOLIO.</a>
         <div className="flex items-center gap-4">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="text-[10px] font-black uppercase tracking-widest text-brand/40 hover:text-brand transition-colors"
+              className="text-[10px] font-black uppercase tracking-widest text-swiss-black/55 hover:text-swiss-purple transition-colors"
             >
               {item.name}
             </a>
