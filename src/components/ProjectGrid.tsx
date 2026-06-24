@@ -18,19 +18,18 @@ export default function ProjectGrid() {
     : projects.filter(p => p.category === activeTab);
 
   return (
-    <section id="projects" className="w-full border-b-4 border-swiss-black bg-poly-cream">
-      <div className="flex flex-wrap items-center justify-between gap-4 p-6 md:px-12 border-b-4 border-swiss-black bg-swiss-yellow sticky top-0 z-40">
-        <h2 className="text-xl font-black uppercase tracking-tighter [text-shadow:2px_2px_0_#ff3fb4]">Selected Works / 精选作品</h2>
-        <div className="flex flex-wrap gap-2">
+    <section id="projects" className="archive-section archive-shell">
+      <div className="archive-section-head">
+        <div>
+          <p>Selected Works</p>
+          <h2>Archive Index</h2>
+        </div>
+        <div className="archive-filter-bar">
           {categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setActiveTab(cat.id)}
-              className={`px-4 py-1 text-[10px] font-black uppercase tracking-widest border-4 border-swiss-black poster-shadow transition-all ${
-                activeTab === cat.id
-                  ? 'bg-swiss-black text-swiss-white'
-                  : 'bg-swiss-white text-swiss-black hover:bg-poly-cyan'
-              }`}
+              className={activeTab === cat.id ? 'active' : ''}
             >
               {cat.name}
             </button>
@@ -38,8 +37,7 @@ export default function ProjectGrid() {
         </div>
       </div>
 
-      {/* Project List */}
-      <motion.div layout className="flex flex-col">
+      <motion.div layout className="archive-project-list">
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />

@@ -1,52 +1,56 @@
-import { motion } from 'motion/react';
-import { cn } from '../lib/utils';
-
-const skills = [
-  { category: '设计工具', items: ['Figma', 'Adobe XD', 'Photoshop', 'Illustrator', 'After Effects'] },
-  { category: '游戏开发', items: ['Unity 3D', 'Unreal Engine', 'C#', 'Blender', 'Spine 2D'] },
-  { category: '前端技术', items: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Three.js'] },
-  { category: '软技能', items: ['用户研究', '原型制作', '交互逻辑', '关卡设计', '团队协作'] },
+const skillsets = [
+  ['策划', '系统设计', '关卡节奏', '解谜规则', '任务文本'],
+  ['美术', '2D 视觉', '3D 建模', '画面把控', '海报排版'],
+  ['工具', 'Figma', 'Unity', 'Blender', 'React'],
+  ['研究', '品类拆解', '体验复盘', '竞品分析', '玩家反馈'],
 ];
 
 export default function TechStack() {
-  const accentColors = ['bg-swiss-purple', 'bg-swiss-green', 'bg-swiss-yellow', 'bg-poly-cyan'];
-
   return (
-    <section id="skills" className="w-full bg-swiss-white">
-      <div className="p-6 md:px-12 border-b-4 border-swiss-black bg-poly-cyan">
-        <h2 className="text-xl font-black uppercase tracking-tighter [text-shadow:2px_2px_0_#fff05a]">Toolkit / 能力工具箱</h2>
+    <section id="skills" className="archive-shell about-archive">
+      <div className="about-title">
+        <h2>About</h2>
+        <h2>me</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-        {skills.map((group, idx) => (
-          <motion.div
-            key={group.category}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: idx * 0.1 }}
-            className="p-8 md:p-12 border-b-4 lg:border-b-0 lg:border-r-4 last:border-r-0 border-swiss-black relative overflow-hidden"
-          >
-            <div className={cn("absolute right-4 top-4 w-16 h-12 poly-clip border-4 border-swiss-black opacity-20", accentColors[idx % accentColors.length])} />
-            <h3 className="text-sm font-black uppercase tracking-[0.2em] mb-8 text-swiss-purple">
-              {group.category}
-            </h3>
-            <div className="flex flex-col gap-4">
-              {group.items.map((item) => (
-                <div
-                  key={item}
-                  className="text-2xl font-bold flex items-center justify-between group cursor-default"
-                >
-                  <span>{item}</span>
-                  <div className={cn(
-                    "w-5 h-5 opacity-0 group-hover:opacity-100 transition-opacity border-2 border-swiss-black poly-clip",
-                    accentColors[idx % accentColors.length]
-                  )} />
-                </div>
-              ))}
+      <div className="about-grid">
+        <div className="about-panel profile">
+          <div className="panel-label">
+            <span>Profile</span>
+            <span>01</span>
+          </div>
+          <p className="profile-name">Jinqiaoqiao</p>
+          <p className="profile-copy">
+            我关注游戏策划、交互体验和视觉表达之间的关系。希望通过系统规则、空间谜题和有记忆点的画面，把创意做成可以被玩家实际体验的作品。
+          </p>
+          <a href="mailto:eventualli@163.com">eventualli@163.com</a>
+        </div>
+
+        <div className="about-panel skills">
+          <div className="panel-label">
+            <span>Skillsets</span>
+            <span>02</span>
+          </div>
+          {skillsets.map((group) => (
+            <div className="skill-row" key={group[0]}>
+              <strong>{group[0]}</strong>
+              <span>{group.slice(1).join(' / ')}</span>
             </div>
-          </motion.div>
-        ))}
+          ))}
+        </div>
+
+        <div id="contact" className="about-panel contact">
+          <div className="panel-label">
+            <span>Contact</span>
+            <span>03</span>
+          </div>
+          <p>欢迎查看项目详情、PDF 图集和视频链接。</p>
+          <div>
+            <a href="#">GitHub</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Instagram</a>
+          </div>
+        </div>
       </div>
     </section>
   );

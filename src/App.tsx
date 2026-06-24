@@ -12,10 +12,8 @@ export default function App() {
         <ProjectGrid />
         <TechStack />
       </main>
-      <footer className="p-12 border-t-4 border-swiss-black text-center bg-swiss-black text-swiss-white">
-        <p className="text-xs font-black uppercase tracking-widest">
-          © 2024 / Low Poly Portfolio / Built with React
-        </p>
+      <footer className="site-footer">
+        <p>© 2026 / Works Archive / Built with React</p>
       </footer>
     </div>
   );
