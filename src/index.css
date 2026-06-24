@@ -523,8 +523,17 @@ button {
   position: absolute;
   display: grid;
   gap: 8px;
-  color: rgba(29, 29, 27, 0.08);
+  color: rgba(29, 29, 27, 0.13);
+  -webkit-text-stroke: 1px rgba(29, 29, 27, 0.1);
+  text-stroke: 1px rgba(29, 29, 27, 0.1);
   transition: color 220ms ease, transform 220ms ease;
+}
+
+.hover-category::after {
+  width: min(100%, 420px);
+  height: 1px;
+  background: rgba(29, 29, 27, 0.14);
+  content: "";
 }
 
 .hover-category span,
@@ -546,8 +555,14 @@ button {
 }
 
 .hover-category.is-active {
-  color: rgba(29, 29, 27, 0.18);
+  color: rgba(29, 29, 27, 0.26);
+  -webkit-text-stroke-color: rgba(29, 29, 27, 0.22);
+  text-stroke-color: rgba(29, 29, 27, 0.22);
   transform: translateY(-4px);
+}
+
+.hover-category.is-active::after {
+  background: rgba(29, 29, 27, 0.28);
 }
 
 .hover-category:nth-child(1) {
@@ -582,14 +597,26 @@ button {
 
 .hover-folder-card {
   position: absolute;
-  z-index: 8;
+  z-index: 12;
   display: block;
-  width: min(52vw, 720px);
-  min-height: 142px;
+  width: min(45vw, 640px);
+  min-height: 188px;
   border: 1px solid rgba(29, 29, 27, 0.08);
   background: #d9d9d9;
-  clip-path: polygon(0 0, 50% 0, 56% 20%, 100% 20%, 100% 100%, 0 100%);
+  overflow: visible;
   animation: folderIn 260ms ease both;
+  box-shadow: 0 20px 42px rgba(29, 29, 27, 0.08);
+}
+
+.hover-folder-card::before {
+  position: absolute;
+  top: -34px;
+  left: 0;
+  width: 58%;
+  height: 35px;
+  background: inherit;
+  clip-path: polygon(0 0, 74% 0, 82% 100%, 100% 100%, 100% 100%, 0 100%);
+  content: "";
 }
 
 .hover-folder-card.is-yellow {
@@ -601,23 +628,23 @@ button {
 }
 
 .hover-folder-card.active-motion {
-  left: 0;
-  bottom: 29%;
+  left: 2%;
+  bottom: 25%;
 }
 
 .hover-folder-card.active-branding {
-  right: 0;
-  bottom: 34%;
+  right: 6%;
+  bottom: 29%;
 }
 
 .hover-folder-card.active-editorial {
   left: 7%;
-  bottom: 12%;
+  bottom: 6%;
 }
 
 .hover-folder-card.active-photoworks {
   right: 19%;
-  bottom: 14%;
+  bottom: 8%;
 }
 
 .hover-folder-card.active-illustration {
@@ -632,21 +659,22 @@ button {
 
 .hover-thumbs {
   position: absolute;
-  z-index: -1;
+  z-index: 2;
   top: -118px;
-  left: 7%;
-  width: 58%;
-  height: 150px;
+  left: 9%;
+  width: 64%;
+  height: 132px;
   pointer-events: none;
 }
 
 .hover-thumb {
   position: absolute;
   bottom: 0;
-  width: 34%;
-  aspect-ratio: 4 / 3;
+  width: 31%;
+  height: 112px;
   border: 1px solid rgba(29, 29, 27, 0.18);
-  object-fit: cover;
+  object-fit: contain;
+  background: #fff;
   box-shadow: 0 14px 28px rgba(29, 29, 27, 0.12);
 }
 
@@ -666,6 +694,8 @@ button {
 }
 
 .hover-folder-meta {
+  position: relative;
+  z-index: 3;
   display: flex;
   justify-content: space-between;
   gap: 24px;
@@ -674,30 +704,40 @@ button {
 }
 
 .hover-folder-body {
-  display: grid;
-  grid-template-columns: minmax(260px, 0.9fr) 1fr;
-  align-items: end;
-  gap: 26px;
-  padding: 12px 28px 28px;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 10px 28px 30px;
+}
+
+.hover-folder-body h2,
+.hover-folder-body p,
+.hover-folder-body small {
+  max-width: 100%;
 }
 
 .hover-folder-body h2 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(58px, 6.4vw, 104px);
+  font-size: clamp(56px, 5.4vw, 86px);
   font-weight: 400;
-  line-height: 0.82;
+  line-height: 0.9;
   letter-spacing: -0.06em;
 }
 
 .hover-folder-body p {
   margin: 0;
+  max-width: 360px;
   font-size: 18px;
   font-weight: 800;
+  line-height: 1.2;
 }
 
 .hover-folder-body small {
   display: block;
+  max-width: 430px;
   margin-top: 12px;
   color: rgba(29, 29, 27, 0.68);
   line-height: 1.55;
@@ -705,7 +745,7 @@ button {
 
 .archive-play {
   position: absolute;
-  z-index: 20;
+  z-index: 2;
   top: 45%;
   left: 50%;
   width: 112px;
@@ -716,6 +756,7 @@ button {
   filter: drop-shadow(0 8px 16px rgba(29, 29, 27, 0.08));
   transform: translate(-50%, -50%);
   pointer-events: none;
+  opacity: 0.58;
 }
 
 .archive-side-badge {
