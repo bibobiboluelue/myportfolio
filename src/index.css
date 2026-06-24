@@ -496,6 +496,263 @@ button {
   background: linear-gradient(135deg, #f3f3f3, #fff);
 }
 
+.hover-home-shell {
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.hover-archive-hero {
+  min-height: calc(100vh - 34px);
+  padding: 70px 28px 18px;
+}
+
+.hover-archive-hero .archive-title-row {
+  margin-top: 6px;
+  pointer-events: none;
+}
+
+.hover-category-list {
+  position: absolute;
+  right: 28px;
+  bottom: 26px;
+  left: 28px;
+  height: 51vh;
+  min-height: 360px;
+}
+
+.hover-category {
+  position: absolute;
+  display: grid;
+  gap: 8px;
+  color: rgba(29, 29, 27, 0.08);
+  transition: color 220ms ease, transform 220ms ease;
+}
+
+.hover-category span,
+.hover-folder-meta,
+.hover-folder-body small {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hover-category strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(56px, 7.3vw, 118px);
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: -0.05em;
+}
+
+.hover-category.is-active {
+  color: rgba(29, 29, 27, 0.18);
+  transform: translateY(-4px);
+}
+
+.hover-category:nth-child(1) {
+  top: 8%;
+  left: 0;
+}
+
+.hover-category:nth-child(2) {
+  top: 15%;
+  left: 51%;
+}
+
+.hover-category:nth-child(3) {
+  top: 42%;
+  left: 0;
+}
+
+.hover-category:nth-child(4) {
+  top: 48%;
+  left: 40%;
+}
+
+.hover-category:nth-child(5) {
+  bottom: 2%;
+  left: 0;
+}
+
+.hover-category:nth-child(6) {
+  right: 17%;
+  bottom: 0;
+}
+
+.hover-folder-card {
+  position: absolute;
+  z-index: 8;
+  display: block;
+  width: min(52vw, 720px);
+  min-height: 142px;
+  border: 1px solid rgba(29, 29, 27, 0.08);
+  background: #d9d9d9;
+  clip-path: polygon(0 0, 50% 0, 56% 20%, 100% 20%, 100% 100%, 0 100%);
+  animation: folderIn 260ms ease both;
+}
+
+.hover-folder-card.is-yellow {
+  background: var(--yellow);
+}
+
+.hover-folder-card.is-gray {
+  background: #d8d8d8;
+}
+
+.hover-folder-card.active-motion {
+  left: 0;
+  bottom: 29%;
+}
+
+.hover-folder-card.active-branding {
+  right: 0;
+  bottom: 34%;
+}
+
+.hover-folder-card.active-editorial {
+  left: 7%;
+  bottom: 12%;
+}
+
+.hover-folder-card.active-photoworks {
+  right: 19%;
+  bottom: 14%;
+}
+
+.hover-folder-card.active-illustration {
+  left: 0;
+  bottom: 0;
+}
+
+.hover-folder-card.active-tech {
+  right: 0;
+  bottom: 0;
+}
+
+.hover-thumbs {
+  position: absolute;
+  z-index: -1;
+  top: -118px;
+  left: 7%;
+  width: 58%;
+  height: 150px;
+  pointer-events: none;
+}
+
+.hover-thumb {
+  position: absolute;
+  bottom: 0;
+  width: 34%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid rgba(29, 29, 27, 0.18);
+  object-fit: cover;
+  box-shadow: 0 14px 28px rgba(29, 29, 27, 0.12);
+}
+
+.thumb-1 {
+  left: 0;
+  transform: rotate(-13deg);
+}
+
+.thumb-2 {
+  left: 30%;
+  transform: rotate(5deg) translateY(10px);
+}
+
+.thumb-3 {
+  left: 58%;
+  transform: rotate(10deg) translateY(2px);
+}
+
+.hover-folder-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 28px 10px;
+  color: rgba(29, 29, 27, 0.64);
+}
+
+.hover-folder-body {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) 1fr;
+  align-items: end;
+  gap: 26px;
+  padding: 12px 28px 28px;
+}
+
+.hover-folder-body h2 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(58px, 6.4vw, 104px);
+  font-weight: 400;
+  line-height: 0.82;
+  letter-spacing: -0.06em;
+}
+
+.hover-folder-body p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.hover-folder-body small {
+  display: block;
+  margin-top: 12px;
+  color: rgba(29, 29, 27, 0.68);
+  line-height: 1.55;
+}
+
+.archive-play {
+  position: absolute;
+  z-index: 20;
+  top: 45%;
+  left: 50%;
+  width: 112px;
+  height: 128px;
+  border: 1px solid rgba(29, 29, 27, 0.08);
+  background: rgba(255, 255, 255, 0.82);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  filter: drop-shadow(0 8px 16px rgba(29, 29, 27, 0.08));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.archive-side-badge {
+  position: absolute;
+  right: 0;
+  bottom: 8vh;
+  z-index: 22;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 160px;
+  background: #fff;
+  box-shadow: 0 12px 28px rgba(29, 29, 27, 0.08);
+}
+
+.archive-side-badge strong {
+  font-size: 22px;
+}
+
+.archive-side-badge span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+@keyframes folderIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 980px) {
   .archive-title-row,
   .archive-card-body,
@@ -538,6 +795,41 @@ button {
   .about-panel:last-child {
     border-bottom: 0;
   }
+
+  .hover-category-list {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    height: auto;
+    min-height: 0;
+    margin-top: 40px;
+  }
+
+  .hover-category {
+    position: relative;
+    inset: auto !important;
+    padding: 16px 0;
+    border-bottom: 1px dotted rgba(29, 29, 27, 0.16);
+  }
+
+  .hover-folder-card,
+  .hover-folder-card.active-motion,
+  .hover-folder-card.active-branding,
+  .hover-folder-card.active-editorial,
+  .hover-folder-card.active-photoworks,
+  .hover-folder-card.active-illustration,
+  .hover-folder-card.active-tech {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    margin-top: 150px;
+  }
+
+  .archive-play,
+  .archive-side-badge {
+    display: none;
+  }
 }
 
 @media (max-width: 640px) {
@@ -560,5 +852,23 @@ button {
 
   .archive-project-copy h3 {
     font-size: 42px;
+  }
+
+  .hover-archive-hero {
+    padding: 48px 18px 18px;
+  }
+
+  .hover-category strong,
+  .hover-folder-body h2 {
+    font-size: 54px;
+  }
+
+  .hover-folder-body {
+    grid-template-columns: 1fr;
+  }
+
+  .hover-thumbs {
+    top: -104px;
+    width: 84%;
   }
 }
