@@ -84,11 +84,6 @@ export default function Header() {
   return (
     <header id="about" className="archive-shell hover-home-shell min-h-screen overflow-hidden">
       <section className="archive-hero hover-archive-hero">
-        <div className="archive-title-row">
-          <h1>Works</h1>
-          <p>Archive</p>
-        </div>
-
         <div className="hover-category-list" aria-label="作品分类">
           {archiveItems.map((item) => (
             <Link
@@ -131,10 +126,6 @@ export default function Header() {
         </Link>
 
         <div className="archive-play" aria-hidden="true" />
-        <aside className="archive-side-badge" aria-hidden="true">
-          <strong>J.</strong>
-          <span>Portfolio Archive</span>
-        </aside>
       </section>
     </header>
   );
