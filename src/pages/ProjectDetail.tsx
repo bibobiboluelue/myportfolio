@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ExternalLink } from 'lucide-react';
 import { projects } from '../data/projects';
@@ -5,6 +6,10 @@ import { projects } from '../data/projects';
 export default function ProjectDetail() {
   const { id } = useParams();
   const project = projects.find((item) => item.id === id);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!project) {
     return (

@@ -1,7 +1,7 @@
 export interface Project {
   id: string;
   title: string;
-  category: 'UIUX' | 'Game' | 'Other';
+  category: 'Game' | 'Interaction' | 'Brand' | 'DigitalMedia';
   description: string;
   imageUrl: string;
   tags: string[];

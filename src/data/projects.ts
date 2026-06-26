@@ -1,6 +1,6 @@
 import { Project } from '../types';
 
-const asset = (path: string) => `${import.meta.env.BASE_URL}${path}`;
+const asset = (path: string) => `/${path}`;
 
 export const projects: Project[] = [
   {
@@ -41,12 +41,15 @@ export const projects: Project[] = [
       { title: '关卡推进', body: '用章节委托串联搜证、推理、布局调整和真相填词，降低理解成本。' },
       { title: '视觉统一', body: '统一 2D 插画、3D 场景与 UI 氛围，让“破煞”主题在画面上持续成立。' },
     ],
-    gallery: Array.from({ length: 10 }, (_, index) => asset(`assets/posha/game-intro-${String(index + 1).padStart(2, '0')}.jpg`)),
+    gallery: [
+      ...Array.from({ length: 5 }, (_, index) => asset(`assets/posha/screenshot-${String(index + 1).padStart(2, '0')}.jpg`)),
+      ...Array.from({ length: 10 }, (_, index) => asset(`assets/posha/game-intro-${String(index + 1).padStart(2, '0')}.jpg`)),
+    ],
   },
   {
     id: '1',
     title: '智能家居交互系统',
-    category: 'UIUX',
+    category: 'Interaction',
     description: '基于用户行为分析的智能家居控制中心，优化了多设备联动的交互逻辑。',
     imageUrl: 'https://picsum.photos/seed/uiux1/800/600',
     tags: ['Mobile App', 'Interaction Design', 'Figma'],
@@ -64,7 +67,7 @@ export const projects: Project[] = [
   {
     id: '3',
     title: '品牌视觉重构计划',
-    category: 'Other',
+    category: 'Brand',
     description: '为某初创科技公司设计的整套视觉识别系统，包含Logo、配色及周边。',
     imageUrl: 'https://picsum.photos/seed/design1/800/600',
     tags: ['Branding', 'Graphic Design', 'Illustrator'],
@@ -73,7 +76,7 @@ export const projects: Project[] = [
   {
     id: '4',
     title: '医疗健康监测平台',
-    category: 'UIUX',
+    category: 'Interaction',
     description: '针对老年人群体设计的健康监测后台，强调易用性与信息层级。',
     imageUrl: 'https://picsum.photos/seed/uiux2/800/600',
     tags: ['Web Design', 'Accessibility', 'Prototyping'],
@@ -82,7 +85,7 @@ export const projects: Project[] = [
   {
     id: '5',
     title: '《迷失森林》动作RPG',
-    category: 'Game',
+    category: 'DigitalMedia',
     description: '一款2D横版动作游戏的战斗系统设计，包含连招逻辑与打击感优化。',
     imageUrl: 'https://picsum.photos/seed/game2/800/600',
     tags: ['Game Design', 'Animation', 'Spine'],

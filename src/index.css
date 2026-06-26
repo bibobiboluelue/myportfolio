@@ -547,9 +547,9 @@ button {
 
 .hover-category strong {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(56px, 7.3vw, 118px);
+  font-size: clamp(46px, 5.8vw, 92px);
   font-weight: 400;
-  line-height: 0.82;
+  line-height: 0.9;
   letter-spacing: -0.05em;
 }
 
@@ -565,40 +565,32 @@ button {
 }
 
 .hover-category:nth-child(1) {
-  top: 18%;
+  top: 16%;
   left: 0;
 }
 
 .hover-category:nth-child(2) {
-  top: 18%;
-  left: 51%;
+  top: 16%;
+  right: 0;
+  max-width: 50%;
 }
 
 .hover-category:nth-child(3) {
-  top: 42%;
+  bottom: 14%;
   left: 0;
 }
 
 .hover-category:nth-child(4) {
-  top: 48%;
-  left: 40%;
-}
-
-.hover-category:nth-child(5) {
-  bottom: 4%;
-  left: 0;
-}
-
-.hover-category:nth-child(6) {
-  right: 17%;
-  bottom: 0;
+  right: 0;
+  bottom: 10%;
+  max-width: 54%;
 }
 
 .hover-folder-card {
   position: absolute;
   z-index: 12;
   display: block;
-  width: min(45vw, 640px);
+  width: min(48vw, 760px);
   min-height: 188px;
   border: 1px solid rgba(29, 29, 27, 0.08);
   background: #d9d9d9;
@@ -626,34 +618,24 @@ button {
   background: #d8d8d8;
 }
 
-.hover-folder-card.active-motion {
+.hover-folder-card.active-game {
   left: 2%;
   bottom: 25%;
 }
 
-.hover-folder-card.active-branding {
+.hover-folder-card.active-interaction {
   right: 6%;
   bottom: 29%;
 }
 
-.hover-folder-card.active-editorial {
+.hover-folder-card.active-brand {
   left: 7%;
   bottom: 6%;
 }
 
-.hover-folder-card.active-photoworks {
-  right: 19%;
+.hover-folder-card.active-media {
+  right: 10%;
   bottom: 8%;
-}
-
-.hover-folder-card.active-illustration {
-  left: 0;
-  bottom: 0;
-}
-
-.hover-folder-card.active-tech {
-  right: 0;
-  bottom: 0;
 }
 
 .hover-thumbs {
@@ -720,9 +702,9 @@ button {
 .hover-folder-body h2 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(56px, 5.4vw, 86px);
+  font-size: clamp(40px, 4.5vw, 66px);
   font-weight: 400;
-  line-height: 0.9;
+  line-height: 0.95;
   letter-spacing: -0.06em;
 }
 
@@ -1075,12 +1057,10 @@ button {
   }
 
   .hover-folder-card,
-  .hover-folder-card.active-motion,
-  .hover-folder-card.active-branding,
-  .hover-folder-card.active-editorial,
-  .hover-folder-card.active-photoworks,
-  .hover-folder-card.active-illustration,
-  .hover-folder-card.active-tech {
+  .hover-folder-card.active-game,
+  .hover-folder-card.active-interaction,
+  .hover-folder-card.active-brand,
+  .hover-folder-card.active-media {
     position: relative;
     inset: auto;
     width: 100%;
@@ -1158,7 +1138,7 @@ button {
 
   .hover-category strong,
   .hover-folder-body h2 {
-    font-size: 54px;
+    font-size: 46px;
   }
 
   .hover-folder-body {
