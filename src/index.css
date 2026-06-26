@@ -520,22 +520,24 @@ button {
 
 .hover-category {
   position: absolute;
-  display: grid;
-  gap: 8px;
+  display: block;
+  width: min(46vw, 760px);
+  min-height: 260px;
   color: rgba(29, 29, 27, 0.13);
   -webkit-text-stroke: 1px rgba(29, 29, 27, 0.1);
   text-stroke: 1px rgba(29, 29, 27, 0.1);
-  transition: color 220ms ease, transform 220ms ease;
+  transition: transform 220ms ease;
 }
 
-.hover-category::after {
+.hover-category-line {
+  display: block;
   width: min(100%, 420px);
   height: 1px;
   background: rgba(29, 29, 27, 0.14);
-  content: "";
+  transition: opacity 180ms ease;
 }
 
-.hover-category span,
+.hover-category-index,
 .hover-folder-meta,
 .hover-folder-body small {
   font-family: "Courier New", monospace;
@@ -545,58 +547,73 @@ button {
   text-transform: uppercase;
 }
 
-.hover-category strong {
+.hover-category-title {
+  display: block;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(46px, 5.8vw, 92px);
   font-weight: 400;
   line-height: 0.9;
   letter-spacing: -0.05em;
+  transition: opacity 180ms ease;
 }
 
-.hover-category.is-active {
-  color: rgba(29, 29, 27, 0.26);
-  -webkit-text-stroke-color: rgba(29, 29, 27, 0.22);
-  text-stroke-color: rgba(29, 29, 27, 0.22);
+.hover-category:hover,
+.hover-category:focus-visible {
   transform: translateY(-4px);
 }
 
-.hover-category.is-active::after {
-  background: rgba(29, 29, 27, 0.28);
+.hover-category:hover .hover-category-index,
+.hover-category:hover .hover-category-title,
+.hover-category:hover .hover-category-line,
+.hover-category:focus-visible .hover-category-index,
+.hover-category:focus-visible .hover-category-title,
+.hover-category:focus-visible .hover-category-line {
+  opacity: 0;
 }
 
 .hover-category:nth-child(1) {
-  top: 16%;
+  top: 13%;
   left: 0;
 }
 
 .hover-category:nth-child(2) {
-  top: 16%;
+  top: 13%;
   right: 0;
-  max-width: 50%;
 }
 
 .hover-category:nth-child(3) {
-  bottom: 14%;
+  bottom: 4%;
   left: 0;
 }
 
 .hover-category:nth-child(4) {
   right: 0;
-  bottom: 10%;
-  max-width: 54%;
+  bottom: 4%;
 }
 
 .hover-folder-card {
   position: absolute;
-  z-index: 12;
+  z-index: 5;
+  top: 70px;
+  left: 0;
   display: block;
-  width: min(48vw, 760px);
+  width: 100%;
   min-height: 188px;
   border: 1px solid rgba(29, 29, 27, 0.08);
   background: #d9d9d9;
+  color: var(--ink);
   overflow: visible;
-  animation: folderIn 260ms ease both;
+  opacity: 0;
+  pointer-events: none;
   box-shadow: 0 20px 42px rgba(29, 29, 27, 0.08);
+  transform: translateY(16px);
+  transition: opacity 180ms ease, transform 220ms ease;
+}
+
+.hover-category:hover .hover-folder-card,
+.hover-category:focus-visible .hover-folder-card {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hover-folder-card::before {
@@ -616,26 +633,6 @@ button {
 
 .hover-folder-card.is-gray {
   background: #d8d8d8;
-}
-
-.hover-folder-card.active-game {
-  left: 2%;
-  bottom: 25%;
-}
-
-.hover-folder-card.active-interaction {
-  right: 6%;
-  bottom: 29%;
-}
-
-.hover-folder-card.active-brand {
-  left: 7%;
-  bottom: 6%;
-}
-
-.hover-folder-card.active-media {
-  right: 10%;
-  bottom: 8%;
 }
 
 .hover-thumbs {
@@ -1052,19 +1049,19 @@ button {
   .hover-category {
     position: relative;
     inset: auto !important;
+    width: 100%;
     padding: 16px 0;
     border-bottom: 1px dotted rgba(29, 29, 27, 0.16);
   }
 
-  .hover-folder-card,
-  .hover-folder-card.active-game,
-  .hover-folder-card.active-interaction,
-  .hover-folder-card.active-brand,
-  .hover-folder-card.active-media {
+  .hover-folder-card {
     position: relative;
-    inset: auto;
+    top: auto;
+    left: auto;
     width: 100%;
-    margin-top: 150px;
+    margin-top: 140px;
+    opacity: 1;
+    transform: none;
   }
 
   .archive-play,
@@ -1136,7 +1133,7 @@ button {
     margin-top: 0;
   }
 
-  .hover-category strong,
+  .hover-category-title,
   .hover-folder-body h2 {
     font-size: 46px;
   }

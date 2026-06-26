@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 
@@ -56,9 +56,6 @@ export default function Header() {
     ];
   }, []);
 
-  const [activeId, setActiveId] = useState(archiveItems[0].id);
-  const activeItem = archiveItems.find((item) => item.id === activeId) ?? archiveItems[0];
-
   return (
     <header id="about" className="archive-shell hover-home-shell min-h-screen overflow-hidden">
       <section className="archive-hero hover-archive-hero">
@@ -67,41 +64,39 @@ export default function Header() {
             <Link
               key={item.id}
               to={item.link}
-              className={`hover-category ${activeId === item.id ? 'is-active' : ''}`}
-              onMouseEnter={() => setActiveId(item.id)}
-              onFocus={() => setActiveId(item.id)}
+              className={`hover-category hover-category-${item.id}`}
             >
-              <span>{item.index}</span>
-              <strong>{item.label}</strong>
+              <span className="hover-category-index">{item.index}</span>
+              <strong className="hover-category-title">{item.label}</strong>
+              <span className="hover-category-line" />
+
+              <div
+                className={`hover-folder-card ${item.tone === 'yellow' ? 'is-yellow' : 'is-gray'}`}
+                aria-hidden="true"
+              >
+                <div className="hover-thumbs">
+                  {item.images.map((image, index) => (
+                    <img
+                      key={`${item.id}-${image}-${index}`}
+                      className={`hover-thumb thumb-${index + 1}`}
+                      src={image}
+                      alt=""
+                    />
+                  ))}
+                </div>
+                <div className="hover-folder-meta">
+                  <span>{item.index}</span>
+                  <span>{item.meta}</span>
+                </div>
+                <div className="hover-folder-body">
+                  <h2>{item.label}</h2>
+                  <p>{item.title}</p>
+                  <small>{item.description}</small>
+                </div>
+              </div>
             </Link>
           ))}
         </div>
-
-        <Link
-          key={activeItem.id}
-          to={activeItem.link}
-          className={`hover-folder-card ${activeItem.tone === 'yellow' ? 'is-yellow' : 'is-gray'} active-${activeItem.id}`}
-        >
-          <div className="hover-thumbs" aria-hidden="true">
-            {activeItem.images.map((image, index) => (
-              <img
-                key={`${activeItem.id}-${image}-${index}`}
-                className={`hover-thumb thumb-${index + 1}`}
-                src={image}
-                alt=""
-              />
-            ))}
-          </div>
-          <div className="hover-folder-meta">
-            <span>{activeItem.index}</span>
-            <span>{activeItem.meta}</span>
-          </div>
-          <div className="hover-folder-body">
-            <h2>{activeItem.label}</h2>
-            <p>{activeItem.title}</p>
-            <small>{activeItem.description}</small>
-          </div>
-        </Link>
 
         <div className="archive-play" aria-hidden="true" />
       </section>
