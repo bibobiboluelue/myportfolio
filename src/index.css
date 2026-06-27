@@ -721,22 +721,6 @@ button {
   line-height: 1.55;
 }
 
-.archive-play {
-  position: absolute;
-  z-index: 2;
-  top: 45%;
-  left: 50%;
-  width: 112px;
-  height: 128px;
-  border: 1px solid rgba(29, 29, 27, 0.08);
-  background: rgba(255, 255, 255, 0.82);
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-  filter: drop-shadow(0 8px 16px rgba(29, 29, 27, 0.08));
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  opacity: 0.58;
-}
-
 .detail-shell {
   min-height: calc(100vh - 32px);
   overflow: hidden;
@@ -1064,7 +1048,6 @@ button {
     transform: none;
   }
 
-  .archive-play,
   .archive-side-badge {
     display: none;
   }

@@ -98,7 +98,6 @@ export default function Header() {
           ))}
         </div>
 
-        <div className="archive-play" aria-hidden="true" />
       </section>
     </header>
   );
