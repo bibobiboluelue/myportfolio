@@ -836,17 +836,57 @@ button {
   background: var(--yellow);
 }
 
-.detail-hero-media {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: stretch;
+.detail-hero-carousel {
   width: min(100%, 760px);
 }
 
+.detail-hero-media {
+  width: 100%;
+  background: #f6f6f6;
+  overflow: hidden;
+}
+
 .detail-hero-media img {
+  display: block;
   width: 100%;
   height: clamp(260px, 35vw, 470px);
-  object-fit: cover;
+  object-fit: contain;
+}
+
+.detail-carousel-controls {
+  display: grid;
+  grid-template-columns: 44px 44px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.detail-carousel-controls button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 34px;
+  border: 1px solid rgba(29, 29, 27, 0.22);
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.detail-carousel-controls button:hover {
+  background: var(--yellow);
+}
+
+.detail-carousel-controls input[type="range"] {
+  width: 100%;
+  accent-color: var(--ink);
+}
+
+.detail-carousel-controls span {
+  font-family: "Courier New", monospace;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
 }
 
 .detail-overview {
@@ -1140,8 +1180,12 @@ button {
     text-align: left;
   }
 
-  .detail-hero-media {
-    grid-template-columns: 1fr;
+  .detail-carousel-controls {
+    grid-template-columns: 38px 38px 1fr;
+  }
+
+  .detail-carousel-controls span {
+    grid-column: 1 / -1;
   }
 
   .detail-copy h1 {

@@ -1,14 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ExternalLink } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
 import { projects } from '../data/projects';
 
 export default function ProjectDetail() {
   const { id } = useParams();
   const project = projects.find((item) => item.id === id);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setActiveSlide(0);
   }, [id]);
 
   if (!project) {
@@ -20,16 +22,20 @@ export default function ProjectDetail() {
     );
   }
 
-  const heroImages = (project.gallery && project.gallery.length > 1)
-    ? project.gallery.slice(0, 2)
-    : [project.imageUrl, project.imageUrl];
-  const displayImages = project.gallery && project.gallery.length > 0 ? project.gallery : [project.imageUrl];
+  const screenshotImages = (project.gallery || []).filter((image) => image.includes('screenshot-'));
+  const heroImages = screenshotImages.length > 0 ? screenshotImages : [project.imageUrl];
+  const displayImages = (project.gallery || [project.imageUrl]).filter((image) => !image.includes('screenshot-'));
+  const safeSlide = Math.min(activeSlide, heroImages.length - 1);
   const detailRows = [
     { label: 'category', value: `${project.category} works` },
     { label: 'year', value: project.period || '2026' },
     { label: 'role', value: project.role || project.tags.slice(0, 2).join(' / ') },
     { label: 'award', value: project.award },
   ].filter((row) => row.value);
+
+  const goToSlide = (direction: -1 | 1) => {
+    setActiveSlide((current) => (current + direction + heroImages.length) % heroImages.length);
+  };
 
   return (
     <main className="archive-shell detail-shell">
@@ -74,14 +80,33 @@ export default function ProjectDetail() {
           )}
         </div>
 
-        <div className="detail-hero-media">
-          {heroImages.map((image, index) => (
+        <div className="detail-hero-carousel">
+          <div className="detail-hero-media">
             <img
-              key={`${image}-${index}`}
-              src={image}
-              alt={`${project.title} preview ${index + 1}`}
+              src={heroImages[safeSlide]}
+              alt={`${project.title} preview ${safeSlide + 1}`}
             />
-          ))}
+          </div>
+
+          {heroImages.length > 1 && (
+            <div className="detail-carousel-controls">
+              <button type="button" onClick={() => goToSlide(-1)} aria-label="Previous screenshot">
+                <ChevronLeft size={22} strokeWidth={2.2} />
+              </button>
+              <input
+                type="range"
+                min="0"
+                max={heroImages.length - 1}
+                value={safeSlide}
+                onChange={(event) => setActiveSlide(Number(event.target.value))}
+                aria-label="Screenshot slider"
+              />
+              <button type="button" onClick={() => goToSlide(1)} aria-label="Next screenshot">
+                <ChevronRight size={22} strokeWidth={2.2} />
+              </button>
+              <span>{String(safeSlide + 1).padStart(2, '0')} / {String(heroImages.length).padStart(2, '0')}</span>
+            </div>
+          )}
         </div>
       </section>
 
@@ -107,17 +132,19 @@ export default function ProjectDetail() {
         ))}
       </section>
 
-      <section className="detail-gallery">
-        {displayImages.map((image, index) => (
-          <figure key={`${image}-${index}`}>
-            <img
-              src={image}
-              alt={`${project.title} image ${index + 1}`}
-              loading={index > 1 ? 'lazy' : 'eager'}
-            />
-          </figure>
-        ))}
-      </section>
+      {displayImages.length > 0 && (
+        <section className="detail-gallery">
+          {displayImages.map((image, index) => (
+            <figure key={`${image}-${index}`}>
+              <img
+                src={image}
+                alt={`${project.title} image ${index + 1}`}
+                loading={index > 1 ? 'lazy' : 'eager'}
+              />
+            </figure>
+          ))}
+        </section>
+      )}
     </main>
   );
 }
